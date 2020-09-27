@@ -37,3 +37,6 @@ void loop() {
 
 
 }
+
+
+//figure out how to do a shut down to slowly reduce the speed?
