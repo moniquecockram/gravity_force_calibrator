@@ -3,7 +3,7 @@
 // Monique Cockram and Ryan Husband
 
 
-//int pins for the motor
+//int pins for the motor and photogate
 int motor = 1 //just a placeholder pin for now
 // need to do a speed pin too???
 
@@ -33,7 +33,7 @@ void loop() {
 // calculate rotation speed speed = (C/number of holes)/time = (2*pi*r/50)/time
 // adjust rotation speed accordingly (if loop?)
       // if speed < chosen value
-            // set_speed += some small value
+            // set_speed += some small value (related to the error from chosen speed? e.g. chosen speed - measurered speed)
       // if speed > chosen value
             // set_speed -= some small value
      // else do nothing
