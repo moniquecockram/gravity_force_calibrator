@@ -4,14 +4,15 @@
 
 
 //int pins for the motor and photogate
-int motor = 1 //just a placeholder pin for now
-// need to do a speed pin too???
+//int motor =  
+int photogate = 19
+//yay
 
 void setup() {
   // put your setup code here, to run once:
 
 //initialise pins
-  pinMode(motor, OUTPUT)
+  //pinMode(motor, OUTPUT)
 
 
 //do a slow speed up of the wheel
