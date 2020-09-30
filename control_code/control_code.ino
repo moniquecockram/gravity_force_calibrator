@@ -5,7 +5,7 @@
 
 //int pins for the motor and photogate
 //int motor =  
-int sensor = 19;
+const int sensor = 19;
 //bool sensorValue; 
 
 
