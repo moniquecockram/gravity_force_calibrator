@@ -5,16 +5,21 @@
 
 //int pins for the motor and photogate
 //int motor =  
-int photogate = 19
-//yay
+int sensor = 19;
+//bool sensorValue; 
+
 
 void setup() {
   // put your setup code here, to run once:
 
+  Serial.begin(9600);
+
 //initialise pins
   //pinMode(motor, OUTPUT)
 
+  pinMode(sensor, INPUT);
 
+ 
 //do a slow speed up of the wheel
 //write(motor, )
 //delay(1000)
@@ -38,6 +43,17 @@ void loop() {
       // if speed > chosen value
             // set_speed -= some small value
      // else do nothing
+
+
+
+  //sensorValue = digitalRead(sensor);
+ 
+  Serial.println(digitalRead(sensor));
+ 
+  delay(500);
+
+
+
 
 
 }
