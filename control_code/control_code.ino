@@ -3,10 +3,16 @@
 // Monique Cockram and Ryan Husband
 
 
-//int pins for the motor and photogate
+/*<Code stolen from <https://github.com/sparkfun/Photo_Interrupter_Breakout> used on https://www.youtube.com/watch?v=jNMb2Az-hIY&ab_channel=SparkFunElectronics
+  Simple Sketch for getting started with Photo Interrupter Breakout */
+
+//Declare libraries
+#include <SoftwareSerial.h>
+
+//set pins for the motor and photogate
 //int motor =  
-const int sensor = 19;
-//bool sensorValue; 
+const int gatePin = 10;
+int val;
 
 
 void setup() {
@@ -17,7 +23,8 @@ void setup() {
 //initialise pins
   //pinMode(motor, OUTPUT)
 
-  pinMode(sensor, INPUT);
+  pinMode(13, OUTPUT);
+  pinMode(gatePin, INPUT);
 
  
 //do a slow speed up of the wheel
@@ -45,14 +52,27 @@ void loop() {
      // else do nothing
 
 
-
-  //sensorValue = digitalRead(sensor);
  
-  Serial.println(digitalRead(sensor));
- 
-  delay(500);
+   //Read photogate data
+  val = digitalRead(gatePin);
+  //Print photogate data in binary
+  Serial.print(val); //printing photogate data
+  Serial.print("\n");
 
+  //If photogate detects something, turn Teensy LED on
+  if (val == HIGH) {
+    digitalWrite(LED_BUILTIN, HIGH);
+  }
 
+  //Leave LED off otherwise
+  else
+  {
+    digitalWrite(LED_BUILTIN, LOW);
+  }
+
+  delay(10);
+
+  
 
 
 
