@@ -15,6 +15,16 @@ const int gatePin = 10;
 int val;
 
 
+
+
+int motorPin = ; //motor pin
+
+int speedPin = 11; //enable
+
+
+
+
+
 void setup() {
   // put your setup code here, to run once:
 
@@ -26,6 +36,18 @@ void setup() {
   pinMode(13, OUTPUT);
   pinMode(gatePin, INPUT);
 
+
+
+
+  
+//Initialise the Motor output pins
+    pinMode(motorPin, OUTPUT);
+    pinMode(speedPin, OUTPUT);
+
+//By default turn off both the motors
+    analogWrite(motorPin,LOW);
+
+
  
 //do a slow speed up of the wheel
 //write(motor, )
@@ -36,6 +58,12 @@ void setup() {
 
 
 }
+
+
+
+
+
+
 
 void loop() {
   // put your main code here, to run repeatedly:
@@ -72,7 +100,9 @@ void loop() {
 
   delay(10);
 
-  
+
+ digitalWrite(motorPin, HIGH);
+ analogWrite(speedPin, 100);
 
 
 
