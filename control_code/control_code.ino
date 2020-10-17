@@ -3,25 +3,25 @@
 // Monique Cockram and Ryan Husband
 
 
-/*<Code stolen from <https://github.com/sparkfun/Photo_Interrupter_Breakout> used on https://www.youtube.com/watch?v=jNMb2Az-hIY&ab_channel=SparkFunElectronics
+/*<Code stolen from <https://github.com/sparkfun/Photo_Interrupter_Breakout> 
+ * used on https://www.youtube.com/watch?v=jNMb2Az-hIY&ab_channel=SparkFunElectronics
   Simple Sketch for getting started with Photo Interrupter Breakout */
 
 //Declare libraries
 #include <SoftwareSerial.h>
 
 //set pins for the motor and photogate
-//int motor =  
 const int gatePin = 10;
 int val;
-
-
-
 
 int motorPin = ; //motor pin
 
 int speedPin = 11; //enable
 
 
+unsigned long prev_time = 0;
+unsigned long current_time = 0;
+unsigned long time_taken = 0;
 
 
 
@@ -29,25 +29,23 @@ void setup() {
   // put your setup code here, to run once:
 
   Serial.begin(9600);
+  
 
 //initialise pins
-  //pinMode(motor, OUTPUT)
 
   pinMode(13, OUTPUT);
   pinMode(gatePin, INPUT);
-
-
-
 
   
 //Initialise the Motor output pins
     pinMode(motorPin, OUTPUT);
     pinMode(speedPin, OUTPUT);
 
-//By default turn off both the motors
+//By default turn off the motor
     analogWrite(motorPin,LOW);
 
 
+  attachInterrupt(digitalPinToInterrupt(pin), timing_function, RISING);
  
 //do a slow speed up of the wheel
 //write(motor, )
@@ -60,7 +58,13 @@ void setup() {
 }
 
 
-
+void timing_function() {
+  // interupt function to execute when the photogate changes to HIGH
+  current_time = millis();
+  time_taken = current_time - prev_time;
+  prev_time = current_time;
+  
+  }
 
 
 
@@ -98,11 +102,16 @@ void loop() {
     digitalWrite(LED_BUILTIN, LOW);
   }
 
-  delay(10);
+  Serial.print(time_taken);
+  delay(10); //make sure this delay is short enough that it wont miss a hole, or even just remove it
+
+ 
 
 
- digitalWrite(motorPin, HIGH);
- analogWrite(speedPin, 100);
+  //speed_val = time_taken / distance
+  //now change motor speed
+ //digitalWrite(motorPin, HIGH);
+ //analogWrite(speedPin, 100);
 
 
 
