@@ -14,9 +14,9 @@
 const int gatePin = 10;
 int val;
 
-int motorPin = ; //motor pin
+//int motorPin = ; //motor pin
 
-int speedPin = 11; //enable
+//int speedPin = 11; //enable
 
 
 unsigned long prev_time = 0;
@@ -38,14 +38,14 @@ void setup() {
 
   
 //Initialise the Motor output pins
-    pinMode(motorPin, OUTPUT);
-    pinMode(speedPin, OUTPUT);
+//    pinMode(motorPin, OUTPUT);
+//    pinMode(speedPin, OUTPUT);
 
 //By default turn off the motor
-    analogWrite(motorPin,LOW);
+//    analogWrite(motorPin,LOW);
 
 
-  attachInterrupt(digitalPinToInterrupt(pin), timing_function, RISING);
+  attachInterrupt(digitalPinToInterrupt(gatePin), timing_function, RISING);
  
 //do a slow speed up of the wheel
 //write(motor, )
@@ -103,7 +103,8 @@ void loop() {
   }
 
   Serial.print(time_taken);
-  delay(10); //make sure this delay is short enough that it wont miss a hole, or even just remove it
+  Serial.print("\n");
+  delay(2); //make sure this delay is short enough that it wont miss a hole, or even just remove it
 
  
 
