@@ -15,7 +15,8 @@ const int gatePin = 10;
 int val;
 
 
-
+float speed_val; //will be in mm/s
+float circumference_val = 1250; //circumference of wheel in mm
 unsigned long prev_time = 0;
 unsigned long current_time = 0;
 unsigned long time_taken = 0;
@@ -94,6 +95,9 @@ void loop() {
   }
 
   Serial.print(time_taken);
+  Serial.print("\n");
+  speed_val = circumference_val/time_taken;
+  Serial.print(speed_val);
   Serial.print("\n");
   delay(10); //make sure this delay is short enough that it wont miss a hole, or even just remove it
 
