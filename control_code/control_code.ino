@@ -36,7 +36,7 @@ void setup() {
  
 
 
-  //attachInterrupt(digitalPinToInterrupt(gatePin), timing_function, RISING);
+  attachInterrupt(digitalPinToInterrupt(gatePin), timing_function, RISING);
  
 //do a slow speed up of the wheel
 //write(motor, )
@@ -50,11 +50,11 @@ void setup() {
 
 
 void timing_function() {
-  // interupt function to execute when the photogate changes to HIGH
-  //current_time = millis();
-  //time_taken = current_time - prev_time;
-  //prev_time = current_time;
-  Serial.print("interupted");
+  //interupt function to execute when the photogate changes to HIGH
+  current_time = millis();
+  time_taken = current_time - prev_time;
+  prev_time = current_time;
+  //Serial.print("interupted");
   }
 
 
@@ -93,8 +93,8 @@ void loop() {
     digitalWrite(LED_BUILTIN, LOW);
   }
 
-  //Serial.print(time_taken);
-  //Serial.print("\n");
+  Serial.print(time_taken);
+  Serial.print("\n");
   delay(10); //make sure this delay is short enough that it wont miss a hole, or even just remove it
 
 
