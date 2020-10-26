@@ -16,7 +16,7 @@ int val;
 
 
 float period; //the period of rotation of the wheel
-int num_holes; //the number of holes around the circumference of the wheel
+float num_holes = 50; //the number of holes around the circumference of the wheel
 unsigned long prev_time = 0;
 unsigned long current_time = 0;
 unsigned long time_taken = 0;
@@ -96,7 +96,7 @@ void loop() {
 
   Serial.print(time_taken);
   Serial.print("\n");
-  period = time_taken*num_holes;
+  period = time_taken*num_holes/1000; //in seconds
   Serial.print(period);
   Serial.print("\n");
   delay(10); //make sure this delay is short enough that it wont miss a hole, or even just remove it
