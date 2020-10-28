@@ -15,6 +15,16 @@ const int gatePin = 10;
 int val;
 
 
+int BPin = 6; //backwards motor in1
+int FPin = 7; //forwards motor in2
+
+int speedPin = 21; //enA 
+
+
+
+float chosen_period = 1.0; //time in seconds for one rotation
+
+
 float period; //the period of rotation of the wheel
 float num_holes = 50; //the number of holes around the circumference of the wheel
 unsigned long prev_time = 0;
@@ -34,17 +44,19 @@ void setup() {
   pinMode(13, OUTPUT);
   pinMode(gatePin, INPUT);
 
- 
 
+  pinMode(BPin, OUTPUT);
+  pinMode(FPin, OUTPUT);
+  pinMode(speedPin, OUTPUT);
+  
 
   attachInterrupt(digitalPinToInterrupt(gatePin), timing_function, RISING);
- 
-//do a slow speed up of the wheel
-//write(motor, )
-//delay(1000)
-//write(motor, slightly faster)
-//delay(1000)
-//etc
+
+
+  analogWrite(BPin,LOW);
+  analogWrite(FPin,HIGH);
+
+  digitalWrite(FPin 90); //previous projects showed that this is lowest speed to overcome friction
 
 
 }
@@ -101,7 +113,9 @@ void loop() {
   Serial.print("\n");
   delay(10); //make sure this delay is short enough that it wont miss a hole, or even just remove it
 
-  
+  if (period < chosen_period) {
+    analogWrite(FPin, )
+    }
 
 
 }
