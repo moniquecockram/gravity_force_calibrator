@@ -30,7 +30,7 @@ float num_holes = 50; //the number of holes around the circumference of the whee
 unsigned long prev_time = 0;
 unsigned long current_time = 0;
 unsigned long time_taken = 0;
-
+int speed_val;
 
 
 void setup() {
@@ -55,8 +55,8 @@ void setup() {
 
   analogWrite(BPin,LOW);
   analogWrite(FPin,HIGH);
-
-  digitalWrite(FPin 90); //previous projects showed that this is lowest speed to overcome friction
+  speed_val = 90; //an initial speed value
+  digitalWrite(FPin, speed_val); //previous projects showed that this is lowest speed to overcome friction
 
 
 }
@@ -114,7 +114,13 @@ void loop() {
   delay(10); //make sure this delay is short enough that it wont miss a hole, or even just remove it
 
   if (period < chosen_period) {
-    analogWrite(FPin, )
+    speed_val = speed_val + 1; //increasing speed_val if too slow
+    analogWrite(FPin, speed_val);
+    }
+    
+  if (period > chosen_period) {
+    speed_val = speed_val - 1;
+    analogWrite(FPin, speed_val);
     }
 
 
