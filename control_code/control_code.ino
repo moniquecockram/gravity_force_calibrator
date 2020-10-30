@@ -22,15 +22,15 @@ int speedPin = 21; //enA
 
 
 
-float chosen_period = 1.0; //time in seconds for one rotation
+float chosen_period = 15.0; //time in seconds for one rotation
 
 
 float period; //the period of rotation of the wheel
-float num_holes = 50; //the number of holes around the circumference of the wheel
+float num_holes = 5; //the number of holes around the circumference of the wheel
 unsigned long prev_time = 0;
 unsigned long current_time = 0;
-unsigned long time_taken = 0;
-int speed_val;
+float time_taken = 0;
+int speed_val = 100;
 
 
 void setup() {
@@ -53,10 +53,10 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(gatePin), timing_function, RISING);
 
 
-  analogWrite(BPin,LOW);
-  analogWrite(FPin,HIGH);
-  speed_val = 90; //an initial speed value
-  digitalWrite(FPin, speed_val); //previous projects showed that this is lowest speed to overcome friction
+  digitalWrite(BPin,LOW);
+  digitalWrite(FPin,HIGH);
+  //speed_val = 100; //an initial speed value
+  analogWrite(speedPin, speed_val); //previous projects showed that this is lowest speed to overcome friction
 
 
 }
@@ -67,7 +67,15 @@ void timing_function() {
   current_time = millis();
   time_taken = current_time - prev_time;
   prev_time = current_time;
-  //Serial.print("interupted");
+  if ((period > chosen_period) && (speed_val < 255)) {
+    speed_val = speed_val + 1; //increasing speed_val if too slow
+    analogWrite(speedPin, speed_val);
+    }
+    
+  if ((period < chosen_period) && (speed_val > 0)) {
+    speed_val = speed_val - 1;
+    analogWrite(speedPin, speed_val);
+    }
   }
 
 
@@ -92,8 +100,8 @@ void loop() {
    //Read photogate data
   val = digitalRead(gatePin);
   //Print photogate data in binary
-  Serial.print(val); //printing photogate data
-  Serial.print("\n");
+  //Serial.print(val); //printing photogate data
+  //Serial.print("\n");
 
   //If photogate detects something, turn Teensy LED on
   if (val == HIGH) {
@@ -107,23 +115,14 @@ void loop() {
   }
 
   Serial.print(time_taken);
-  Serial.print("\n");
+  Serial.print("___");
   period = time_taken*num_holes/1000; //in seconds
   Serial.print(period);
-  Serial.print("\n");
+  Serial.print("___");
   delay(10); //make sure this delay is short enough that it wont miss a hole, or even just remove it
-
-  if (period < chosen_period) {
-    speed_val = speed_val + 1; //increasing speed_val if too slow
-    analogWrite(FPin, speed_val);
-    }
-    
-  if (period > chosen_period) {
-    speed_val = speed_val - 1;
-    analogWrite(FPin, speed_val);
-    }
-
-
+  Serial.print(speed_val);
+  Serial.print("\n");
+  
 }
 
 
