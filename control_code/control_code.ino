@@ -72,7 +72,7 @@ void timing_function() {
     analogWrite(speedPin, speed_val);
     }
     
-  if ((period < chosen_period) && (speed_val > 128)) {
+  if ((period < chosen_period) && (speed_val > 128)) { //128 is the lowest speed before its too slow for friction
     speed_val = speed_val - 1;
     analogWrite(speedPin, speed_val);
     }
@@ -83,19 +83,6 @@ void timing_function() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
-
-// set wheel speed to chosen value
-// read light gate output data (should be a time between last peak?
-// calculate rotation speed speed = (C/number of holes)/time = (2*pi*r/50)/time
-// adjust rotation speed accordingly (if loop?)
-      // if speed < chosen value
-            // set_speed += some small value (related to the error from chosen speed? e.g. chosen speed - measurered speed)
-      // if speed > chosen value
-            // set_speed -= some small value
-     // else do nothing
-
-
  
    //Read photogate data
   val = digitalRead(gatePin);
@@ -119,11 +106,8 @@ void loop() {
   period = time_taken*num_holes/1000; //in seconds
   Serial.print(period);
   Serial.print("___");
-  delay(10); //make sure this delay is short enough that it wont miss a hole, or even just remove it
+  delay(10); 
   Serial.print(speed_val);
   Serial.print("\n");
   
 }
-
-
-//figure out how to do a shut down to slowly reduce the speed?
