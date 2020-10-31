@@ -18,7 +18,7 @@ int val;
 int BPin = 6; //backwards motor in1
 int FPin = 7; //forwards motor in2
 
-int speedPin = 21; //enA 
+int speedPin = 19; //enA 
 
 
 
@@ -30,7 +30,7 @@ float num_holes = 5; //the number of holes around the circumference of the wheel
 unsigned long prev_time = 0;
 unsigned long current_time = 0;
 float time_taken = 0;
-int speed_val = 100;
+int speed_val;
 
 
 void setup() {
@@ -55,7 +55,7 @@ void setup() {
 
   digitalWrite(BPin,LOW);
   digitalWrite(FPin,HIGH);
-  //speed_val = 100; //an initial speed value
+  speed_val = 150; //an initial speed value
   analogWrite(speedPin, speed_val); //previous projects showed that this is lowest speed to overcome friction
 
 
@@ -72,7 +72,7 @@ void timing_function() {
     analogWrite(speedPin, speed_val);
     }
     
-  if ((period < chosen_period) && (speed_val > 0)) {
+  if ((period < chosen_period) && (speed_val > 128)) {
     speed_val = speed_val - 1;
     analogWrite(speedPin, speed_val);
     }
