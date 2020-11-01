@@ -18,7 +18,7 @@ int val;
 int BPin = 6; //backwards motor in1
 int FPin = 7; //forwards motor in2
 
-int speedPin = 19; //enA 
+int speedPin = 21; //enA 
 
 
 
