@@ -22,11 +22,11 @@ int speedPin = 21; //enA
 
 
 
-float chosen_period = 15.0; //time in seconds for one rotation
+float chosen_period = 0.7; //time in seconds for one rotation
 
 
 float period; //the period of rotation of the wheel
-float num_holes = 5; //the number of holes around the circumference of the wheel
+float num_holes = 2; //the number of holes around the circumference of the wheel
 unsigned long prev_time = 0;
 unsigned long current_time = 0;
 float time_taken = 0;
@@ -55,7 +55,7 @@ void setup() {
 
   digitalWrite(BPin,LOW);
   digitalWrite(FPin,HIGH);
-  speed_val = 150; //an initial speed value
+  speed_val = 100; //an initial speed value
   analogWrite(speedPin, speed_val); //previous projects showed that this is lowest speed to overcome friction
 
 
@@ -72,7 +72,7 @@ void timing_function() {
     analogWrite(speedPin, speed_val);
     }
     
-  if ((period < chosen_period) && (speed_val > 128)) { //128 is the lowest speed before its too slow for friction
+  if ((period < chosen_period) && (speed_val > 40)) {
     speed_val = speed_val - 1;
     analogWrite(speedPin, speed_val);
     }
